@@ -20,5 +20,17 @@ export const getBlogPosts = () => readJSON(blogpostsJSONPATH);
 export const writeBlogPost = (blogPostsArray) =>
   writeJSON(blogpostsJSONPATH, blogPostsArray);
 
-export const saveUsersAvatars = (fileName, contentAsBuffer) =>
-  writeFile(join(blogPostsPublicFolderPath, fileName), contentAsBuffer);
+export const saveUsersAvatars = (fileName, contentAsBuffer) => {
+  const filePath = join(blogPostsPublicFolderPath, fileName);
+  const whereWeSaved = `/img/blogPosts/${fileName}`;
+  writeFile(filePath, contentAsBuffer);
+  const url = `http://localhost:3003${whereWeSaved}`;
+  return url;
+};
+
+/*     const params = request.params.userId
+
+  export const saveUsersAvatars2 = (fileName, request.params.userId) => {
+    writeFile(join(blogPostsPublicFolderPath, fileName), request.params.userId);
+  }
+ */
