@@ -52,6 +52,21 @@ const postSchema = {
   },
 };
 
+const commentSchema = {
+  text: {
+    isString: {
+      errorMessage: "Text field is required for comment",
+    },
+  },
+  userName: {
+    isString: {
+      errorMessage: "User name is required for comment",
+    },
+  },
+};
+
+export const checkCommentSchema = checkSchema(commentSchema);
+
 export const checkPostSchema = checkSchema(postSchema);
 export const checkPostValidationResult = (req, res, next) => {
   const errors = validationResult(req);
