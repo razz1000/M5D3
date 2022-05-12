@@ -50,7 +50,7 @@
     ]
   },
   "description": "",
-  "main": "index.js",
+  "main": "src/server.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/razz1000/M5D3.git"
