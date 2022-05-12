@@ -48,6 +48,7 @@ blogPostsRouter.get("/:postId", async (request, response, next) => {
   );
   response.send(blogPostsFound);
 });
+
 blogPostsRouter.put(
   "/:postId",
   checkPostSchema,
@@ -84,7 +85,40 @@ blogPostsRouter.delete(
   }
 );
 
-blogPostsRouter.put(
+blogPostsRouter.post("/:postId/comments", async (request, response, next) => {
+  const blogposts = await getBlogPosts();
+  const index = blogposts.find((post) => post.id === request.params.postId);
+  if (!index == -1) {
+    res
+      .status(404)
+      .send({ message: `blog with ${req.params.id} is not found!` });
+  }
+  const oldPost = blogposts[index];
+  /*   const previousblogData = fileAsJSONArray[index]; */
+  /*   previousblogData.comments = previousblogData.comments || []; */
+  const changedblog = {
+    ...oldPost,
+    ...request.body,
+    comments: [...comments, comment],
+    updatedAt: new Date(),
+    id: req.params.postId,
+  };
+  blogposts[index] = changedblog;
+  await writeBlogPost(blogposts);
+  response.send(updatedBlogPost);
+  /* 
+  fileAsJSONArray[blogPostsFound] = changedblog;
+
+  fs.writeFileSync(blogsFilePath, JSON.stringify(fileAsJSONArray));
+  response.send(changedblog);
+
+
+
+
+  response.send(blogPostsFound); */
+});
+
+/* blogPostsRouter.put(
   "/:id/comment",
   checkCommentSchema,
 
@@ -124,6 +158,6 @@ blogPostsRouter.put(
       res.send(500).send({ message: error.message });
     }
   }
-);
+); */
 
 export default blogPostsRouter;

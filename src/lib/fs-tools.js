@@ -9,14 +9,21 @@ const dataFolderPath = join(dirname(fileURLToPath(import.meta.url)), "../data");
 const authorsJSONpath = join(dataFolderPath, "authors.json");
 
 const blogpostsJSONPATH = join(dataFolderPath, "blogposts.json");
-console.log(blogpostsJSONPATH);
 
 const blogPostsPublicFolderPath = join(process.cwd(), "./public/img/blogPosts");
 
+const authorsPostsPublicFolderPath = join(
+  process.cwd(),
+  "./public/img/authorPosts"
+);
+
 export const getAuthors = () => readJSON(authorsJSONpath);
+
 export const writeAuthors = (authorsArray) =>
   writeJSON(authorsJSONpath, authorsArray);
+
 export const getBlogPosts = () => readJSON(blogpostsJSONPATH);
+
 export const writeBlogPost = (blogPostsArray) =>
   writeJSON(blogpostsJSONPATH, blogPostsArray);
 
@@ -28,9 +35,10 @@ export const saveUsersAvatars = (fileName, contentAsBuffer) => {
   return url;
 };
 
-/*     const params = request.params.userId
-
-  export const saveUsersAvatars2 = (fileName, request.params.userId) => {
-    writeFile(join(blogPostsPublicFolderPath, fileName), request.params.userId);
-  }
- */
+export const saveAuthorsAvatars = (fileName, contentAsBuffer) => {
+  const filePath = join(authorsPostsPublicFolderPath, fileName);
+  const whereWeSaved = `/img/authorPosts/${fileName}`;
+  writeFile(filePath, contentAsBuffer);
+  const url = `http://localhost:3003${whereWeSaved}`;
+  return url;
+};

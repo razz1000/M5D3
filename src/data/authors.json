@@ -5,9 +5,10 @@
     "surname": "Petersen",
     "email": "test@testing.dkj",
     "date_of_birth": "14-3-22",
-    "avatar": "https://ui-avatars.com/api/?name=peter",
+    "avatar": "http://localhost:3003/img/authorPosts/Boywithgun.jpeg",
     "createdAt": "2022-05-10T14:04:12.867Z",
-    "id": "2ar5wzl7mal3084s04"
+    "id": "2ar5wzl7mal3084s04",
+    "updatedAt": "2022-05-12T19:44:18.209Z"
   },
   {
     "name": "Peterrrrrrr_new_one",
