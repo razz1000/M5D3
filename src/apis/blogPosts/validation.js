@@ -42,6 +42,14 @@ const postSchema = {
     in: ["body"],
     isString: { errorMessage: "Content is required" },
   },
+  "comments.author": {
+    in: ["body"],
+    isString: { errorMessage: "Comments Author is required" },
+  },
+  "comments.text": {
+    in: ["body"],
+    isString: { errorMessage: "Text for the comment is missing" },
+  },
 };
 
 export const checkPostSchema = checkSchema(postSchema);
